@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Link the stylesheet -->
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Link the javascript file -->
+    <script src="script.js" defer></script>
+    <title>Tic Tac Toe Game</title>
+    <!-- site description -->
+    <meta
+      name="description"
+      content="Tic Tac Toe Game - A simple game to play with your friends"
+    />
+  </head>
+  <body>
+    <!-- create the Game board layout -->
+    <div class="container">
+      <!-- Dark Mode Toggle Switch -->
+      <div class="darkmode-switch">
+        <span>🌞 Light</span> &nbsp;
+        &nbsp;
+        <label class="switch">
+          <input type="checkbox" id="darkmodeToggle">
+          <span class="slider round"></span>
+        </label>&nbsp; &nbsp;
+        <span>🌚 Dark</span>
+      </div>
+      <h1 class="game__title">Tic Tac Toe</h1>
+      <p 
+      class="game__instructions"
+      ><strong>Instructions:</strong> &nbsp; Select the number of Rounds and click start to begin.</p>
+
+      <!-- Rounds Selector -->
+      <div class="rounds-selection">
+        <input
+          type="number"
+          id="rounds"
+          min="1"
+          placeholder="Enter rounds"
+        />
+        <button id="startButton">Start</button>
+      </div>
+      <div class="score-board">
+        <p id="playerXScore">Player X: 0</p>
+        <p id="playerOScore">Player O: 0</p>
+      </div>
+      <!-- Rest of the HTML code remains same -->
+
+      <div class="game__board" id="board">
+        <!-- create the cells -->
+        <div class="game__board__cell" data-cell></div>
+        <div class="game__board__cell" data-cell></div>
+        <div class="game__board__cell" data-cell></div>
+        <div class="game__board__cell" data-cell></div>
+        <div class="game__board__cell" data-cell></div>
+        <div class="game__board__cell" data-cell></div>
+        <div class="game__board__cell" data-cell></div>
+        <div class="game__board__cell" data-cell></div>
+        <div class="game__board__cell" data-cell></div>
+      </div>
+      <!-- create the restart button -->
+      <div class="game__status" id="winMessage">
+        <div class="game__status__message" id="winMessageText"></div>
+        <button class="game__status__restart" id="restartBtn">Restart</button>
+      </div>
+      
+
+      
+  </body>
+</html>

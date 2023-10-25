@@ -1,0 +1,362 @@
+:root {
+  --cell-size: 6rem;
+  --color: #d64d9e;
+  --color-set: #d64d9e;
+  --1: 0.625rem;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.5s ease-in-out;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: aliceblue;
+}
+
+.game__title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.game__instructions {
+  font-size: 1.2rem;
+  color: #676767;
+  margin-bottom: 2rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.rounds-selection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+#rounds {
+  padding: 0.625rem;
+  font-size: 1rem;
+  border-radius: 0.625rem;
+  color: rgb(23, 22, 22);
+  border: none;
+  cursor: pointer;
+}
+
+#startButton {
+  padding: 0.625rem;
+  font-size: 1rem;
+  border-radius: 0.625rem;
+  background-color: #5bd64d;
+  color: black;
+  border: none;
+  cursor: pointer;
+}
+
+#startButton:hover {
+  background-color: #d64d9e;
+  color: white;
+  transform: scale(1.1);
+  transition: all 0.2s ease-in-out;
+}
+
+.game__board {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: repeat(3, auto);
+  border: 1px solid black;
+  padding: 3rem;
+  border-radius: 0.625rem;
+}
+
+.game__board__cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.game__board__cell:nth-child(1),
+.game__board__cell:nth-child(2),
+.game__board__cell:nth-child(3) {
+  border-top: none;
+}
+
+.game__board__cell:nth-child(1),
+.game__board__cell:nth-child(4),
+.game__board__cell:nth-child(7) {
+  border-left: none;
+}
+
+.game__board__cell:nth-child(3),
+.game__board__cell:nth-child(6),
+.game__board__cell:nth-child(9) {
+  border-right: none;
+}
+
+.game__board__cell:nth-child(7),
+.game__board__cell:nth-child(8),
+.game__board__cell:nth-child(9) {
+  border-bottom: none;
+}
+
+.game__board__cell.player_0,
+.game__board__cell.player_x {
+  cursor: not-allowed;
+}
+
+.game__board.player_x .game__board__cell:not(.player_0):not(.player_x):hover {
+  background: linear-gradient(
+      to top right,
+      transparent calc(50% - var(--1) / 2),
+      var(--color) calc(50% - var(--1) / 2),
+      calc(50% + var(--1) / 2),
+      transparent calc(50% + var(--1) / 2)
+    ),
+    linear-gradient(
+      to bottom right,
+      transparent calc(50% - var(--1) / 2),
+      var(--color) calc(50% - var(--1) / 2) calc(50% + var(--1) / 2),
+      transparent calc(50% + var(--1) / 2)
+    );
+  background-size: 80% 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.game__board__cell.player_x {
+  background: linear-gradient(
+      to top right,
+      transparent calc(50% - var(--1) / 2),
+      var(--color-set) calc(50% - var(--1) / 2),
+      calc(50% + var(--1) / 2),
+      transparent calc(50% + var(--1) / 2)
+    ),
+    linear-gradient(
+      to bottom right,
+      transparent calc(50% - var(--1) / 2),
+      var(--color-set) calc(50% - var(--1) / 2) calc(50% + var(--1) / 2),
+      transparent calc(50% + var(--1) / 2)
+    );
+  background-size: 80% 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.game__board.player_0 .game__board__cell:not(.player_0):not(.player_x):hover {
+  background: radial-gradient(var(--color) 50%, transparent 50%);
+  background-size: 80% 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.game__board__cell.player_0 {
+  background: radial-gradient(var(--color-set) 50%, transparent 50%);
+  background-size: 80% 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.game__status {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: #21d4fd;
+  background-image: linear-gradient(19deg, #21d4fd 0%, #b721ff 100%);
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  flex-direction: column;
+}
+
+.game__status__restart {
+  border-radius: 10px;
+  font-size: 3rem;
+  padding: 0.25em 0.5em;
+  background: white;
+  border: 1px solid var(--color-set);
+  cursor: pointer;
+}
+
+.game__status__restart:hover {
+  background: var(--color-set);
+  color: white;
+}
+
+.game__status__message {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.game__status.show {
+  display: flex;
+}
+
+.score-board {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 2rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 600px) {
+  :root {
+    --cell-size: 3rem;
+  }
+  .game__title {
+    font-size: 2rem;
+  }
+  .game__instructions {
+    font-size: 1rem;
+  }
+  .score-board {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  :root {
+    --cell-size: 4rem;
+  }
+  .game__title {
+    font-size: 2.5rem;
+  }
+  .game__instructions {
+    font-size: 1.1rem;
+  }
+  .score-board {
+    font-size: 1.75rem;
+  }
+}
+
+/* Dark Mode Switcht */
+
+/* Dark Mode Toggle Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  /* width and height in rem */
+  width: 3rem;
+  height: 1.5rem;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 1.5rem;
+  width: 1.5rem;
+  left: 0;
+  bottom: 0;
+  background-color: white;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #d64d9e;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #d64d9e;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.darkmode-switch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+/* Dark Mode CSS */
+body.dark-mode {
+  background-color: #212121;
+  color: #f5f5f5;
+}
+
+.container.dark-mode {
+  background-color: #212121;
+}
+
+.game__title.dark-mode,
+.game__instructions.dark-mode,
+#playerXScore.dark-mode,
+#playerOScore.dark-mode,
+.game__status__message.dark-mode,
+.game__status__restart.dark-mode {
+  color: #f5f5f5;
+}
+
+.game__board.dark-mode {
+  border-color: #f5f5f5;
+}
+
+.game__board__cell.dark-mode {
+  border-color: #f5f5f5;
+}
+
+#startButton.dark-mode,
+.game__status__restart.dark-mode {
+  background-color: #212121;
+  border-color: #f5f5f5;
+  color: #f5f5f5;
+}
+
+#startButton.dark-mode:hover,
+.game__status__restart.dark-mode:hover {
+  background-color: #f5f5f5;
+  color: #212121;
+}
