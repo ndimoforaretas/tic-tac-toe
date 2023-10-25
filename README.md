@@ -40,4 +40,3 @@ The Tic Tac Toe game offers a perfect blend of simplicity and interactivity. Whe
    - Toggling dark mode.
 4. **Dark Mode Functionality:** Allows the user to switch between light and dark themes for the game interface.
 5. **Game Initialization:** The `startGame()` function resets the game board, updates scores, and sets the turn for the next player.
-# tic-tac-toe
